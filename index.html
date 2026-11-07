@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estaco | 100% US-Grown Organic Overnight Oats</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        olive: {
+                            50: '#F4F6F2',
+                            100: '#E6EBE2',
+                            600: '#5C724E',
+                            700: '#4A5D3E',
+                            800: '#3B4A2D',
+                            900: '#2A3520',
+                        },
+                        cream: {
+                            50: '#FDFBF7',
+                            100: '#F7F3EB',
+                            200: '#EFE8DA',
+                            300: '#E3D7C1',
+                        },
+                        earth: {
+                            800: '#2C2520',
+                            900: '#1C1714',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Fraunces', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FDFBF7;
+            color: #2C2520;
+        }
+        h1, h2, h3, .font-editorial {
+            font-family: 'Fraunces', serif;
+        }
+        
+        /* Interactive Map Pins */
+        .map-pin {
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .map-pin:hover, .map-pin.active {
+            transform: scale(1.35);
+        }
+        .map-pin.active circle.outer-ring {
+            stroke-width: 3;
+            animation: pulse 1.8s infinite;
+        }
+        @keyframes pulse {
+            0% { r: 10px; opacity: 1; }
+            100% { r: 24px; opacity: 0; }
+        }
+
+        /* Subtle Noise Overlay */
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-olive-100 selection:text-olive-900 bg-cream-50 text-earth-800">
+
+    <!-- Navigation Header -->
+    <nav class="sticky top-0 z-50 bg-cream-50/90 backdrop-blur-md border-b border-cream-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-olive-700 flex items-center justify-center text-cream-50 font-serif text-2xl font-bold transition-transform group-hover:scale-105">
+                    E
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-2xl font-bold tracking-tight text-olive-800">Estaco</span>
+                    <span class="text-[10px] tracking-widest uppercase text-olive-600 font-semibold">Wyoming, USA</span>
+                </div>
+            </a>
+
+            <!-- Nav Links -->
+            <div class="hidden md:flex items-center gap-8 font-medium text-sm text-earth-800/80">
+                <a href="#formula" class="hover:text-olive-700 transition-colors">Our Formula</a>
+                <a href="#provenance" class="hover:text-olive-700 transition-colors">US Provenance Map</a>
+                <a href="#founders" class="hover:text-olive-700 transition-colors">Co-Founders</a>
+                <a href="#model" class="hover:text-olive-700 transition-colors">Team Drop Model</a>
+            </div>
+
+            <!-- Pre-order Action -->
+            <div>
+                <a href="#signup" class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-olive-700 hover:bg-olive-800 text-cream-50 text-sm font-semibold transition-all shadow-sm hover:shadow">
+                    Join Launch Pre-Sale
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative overflow-hidden py-16 lg:py-24 bg-noise border-b border-cream-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Hero Content Left -->
+                <div class="lg:col-span-7 space-y-6 text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-olive-100/70 border border-olive-600/20 text-olive-800 text-xs font-semibold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-olive-600 animate-pulse"></span>
+                        100% US-Grown Organic Agriculture
+                    </div>
+                    
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-earth-900 leading-[1.15]">
+                        Honest fuel for daily baseline performance.
+                    </h1>
+                    
+                    <p class="text-lg text-earth-800/80 max-w-2xl leading-relaxed">
+                        Pure, allergen-free overnight oats mix crafted for student-athletes and active humans. Made from 7 uncompromised American ingredients—zero added sugar, zero seed oils, zero nuts.
+                    </p>
+
+                    <!-- Feature Pillars Badges -->
+                    <div class="pt-2 flex flex-wrap gap-2 sm:gap-3 text-xs font-semibold text-olive-900">
+                        <span class="px-3.5 py-1.5 bg-cream-100 rounded-lg border border-cream-200">✓ 100% Nut-Free</span>
+                        <span class="px-3.5 py-1.5 bg-cream-100 rounded-lg border border-cream-200">✓ Organic US Farm Sourced</span>
+                        <span class="px-3.5 py-1.5 bg-cream-100 rounded-lg border border-cream-200">✓ Zero Added Sugar or Oils</span>
+                        <span class="px-3.5 py-1.5 bg-cream-100 rounded-lg border border-cream-200">✓ $9.99 / 1kg Bulk Drop</span>
+                    </div>
+
+                    <!-- Signup Form Container -->
+                    <div id="signup" class="pt-4 max-w-lg">
+                        <form id="hero-presale-form" class="space-y-3">
+                            <div class="flex flex-col sm:flex-row gap-2.5">
+                                <input 
+                                    type="email" 
+                                    required 
+                                    placeholder="Enter your email address..." 
+                                    class="flex-1 px-4 py-3.5 rounded-xl border border-cream-300 bg-white focus:outline-none focus:ring-2 focus:ring-olive-700 text-sm shadow-sm"
+                                >
+                                <button 
+                                    type="submit" 
+                                    class="px-6 py-3.5 rounded-xl bg-olive-700 hover:bg-olive-800 text-cream-50 font-semibold text-sm transition-all shadow-sm hover:shadow flex items-center justify-center gap-2 whitespace-nowrap"
+                                >
+                                    <span>Get Pre-Sale Access</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                </button>
+                            </div>
+                            <p class="text-xs text-earth-800/60 pl-1">
+                                Launching first for high school & college sports teams. No spam, ever.
+                            </p>
+                        </form>
+                        
+                        <!-- Success Banner (Hidden by default) -->
+                        <div id="hero-success-msg" class="hidden p-4 rounded-xl bg-olive-100 border border-olive-600/30 text-olive-900 text-sm font-medium">
+                            🎉 You're on the list! We'll notify you as soon as our next batch drop opens.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic Right -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <!-- Clean Container Mockup Card -->
+                    <div class="w-full max-w-md bg-cream-100 rounded-3xl p-8 border border-cream-200 shadow-xl shadow-earth-800/5 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 translate-x-4 -translate-y-4 w-32 h-32 bg-olive-100 rounded-full blur-2xl opacity-60"></div>
+                        
+                        <!-- Product Kraft Pouch Illustration -->
+                        <div class="relative bg-white rounded-2xl p-6 border border-cream-200/80 shadow-sm text-center">
+                            <div class="inline-block px-3 py-1 rounded-full bg-olive-50 text-olive-700 text-[11px] font-bold tracking-wider uppercase mb-3">
+                                1.0 KG / 2.2 LBS BULK BAG
+                            </div>
+                            
+                            <div class="py-6 border-y border-cream-100 my-4 space-y-2">
+                                <h2 class="font-serif text-3xl font-bold text-olive-800">Estaco</h2>
+                                <p class="text-xs tracking-widest text-earth-800/70 font-semibold uppercase">Organic Overnight Oats Fuel</p>
+                                <p class="text-xs italic text-earth-800/60 font-serif pt-1">Oats • Flax • Sunflower Seeds • Chia • Raisins • Prunes • Carob</p>
+                            </div>
+
+                            <div class="flex justify-between items-center text-xs font-semibold text-earth-800/70 pt-2">
+                                <span>Wyoming Reg. HQ</span>
+                                <span class="text-olive-700">100% US Farm Sourced</span>
+                            </div>
+                        </div>
+
+                        <!-- Highlight Value Callout -->
+                        <div class="mt-6 flex items-center justify-between p-4 bg-white/80 backdrop-blur rounded-xl border border-cream-200 text-xs font-medium">
+                            <div>
+                                <span class="block text-earth-800/60 font-normal">Target Team Price</span>
+                                <span class="text-base font-bold text-earth-900">$9.99 <span class="text-xs font-normal text-earth-800/60">/ kg</span></span>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-earth-800/60 font-normal">Per Serving</span>
+                                <span class="text-base font-bold text-olive-700">~$0.75</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROVENANCE MAP SECTION -->
+    <section id="provenance" class="py-20 bg-cream-100 border-b border-cream-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-olive-700">Radical Sourcing Transparency</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-normal text-earth-900 mt-2">
+                    Every ingredient grown on American soil.
+                </h2>
+                <p class="text-earth-800/80 mt-3 text-base">
+                    We bypass global supply chains to partner directly with domestic farmers. Select any dot on the map to explore the origin of your food.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Interactive SVG Map -->
+                <div class="lg:col-span-8 bg-white rounded-3xl p-6 sm:p-8 border border-cream-200 shadow-sm relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-semibold text-earth-800/60 uppercase tracking-wider">USA Agricultural Provenance</span>
+                        <span class="text-xs text-olive-700 font-medium">Hover/Click pins for details</span>
+                    </div>
+
+                    <!-- Simplified Interactive USA Map Graphic -->
+                    <div class="relative w-full aspect-[16/10] bg-cream-50 rounded-2xl border border-cream-200 overflow-hidden flex items-center justify-center p-2">
+                        <svg viewBox="0 0 960 600" class="w-full h-full text-cream-300 fill-current">
+                            <!-- Stylized USA Base Path -->
+                            <path d="M 150 150 L 220 130 L 320 140 L 400 110 L 500 130 L 600 110 L 700 140 L 820 150 L 890 190 L 850 250 L 880 320 L 820 400 L 780 480 L 700 470 L 620 450 L 520 490 L 450 490 L 380 430 L 300 450 L 220 400 L 140 380 L 100 280 L 120 200 Z" class="fill-cream-200/70 stroke-cream-300" stroke-width="2"/>
+                            <!-- State Lines Decorative Grid (Subtle) -->
+                            <path d="M 220 130 L 220 400 M 320 140 L 320 450 M 450 120 L 450 490 M 600 110 L 600 450 M 700 140 L 700 470 M 150 250 L 850 250 M 140 350 L 850 350" stroke="#E3D7C1" stroke-width="1" stroke-dasharray="4,4" fill="none" opacity="0.6"/>
+
+                            <!-- PINS GROUP -->
+                            <!-- Wyoming HQ -->
+                            <g class="map-pin active" data-id="wyoming" transform="translate(340, 260)">
+                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
+                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
+                                <circle cx="0" cy="0" r="3" fill="#FDFBF7"/>
+                            </g>
+                            <text x="350" y="255" class="text-[11px] font-bold fill-earth-900 pointer-events-none">Wyoming (HQ)</text>
+
+                            <!-- California (Raisins & Prunes) -->
+                            <g class="map-pin" data-id="california" transform="translate(170, 310)">
+                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
+                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
+                            </g>
+                            <text x="110" y="330" class="text-[11px] font-semibold fill-earth-800 pointer-events-none">California</text>
+
+                            <!-- Upper Midwest (North Dakota/Minnesota - Oats & Sunflowers) -->
+                            <g class="map-pin" data-id="midwest" transform="translate(480, 180)">
+                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
+                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
+                            </g>
+                            <text x="495" y="175" class="text-[11px] font-semibold fill-earth-800 pointer-events-none">Upper Midwest</text>
+
+                            <!-- Northern Plains (Montana - Golden Flax) -->
+                            <g class="map-pin" data-id="montana" transform="translate(320, 170)">
+                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
+                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
+                            </g>
+                            <text x="260" y="165" class="text-[11px] font-semibold fill-earth-800 pointer-events-none">Montana</text>
+
+                            <!-- Kentucky/Tennessee (Chia) -->
+                            <g class="map-pin" data-id="kentucky" transform="translate(640, 310)">
+                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
+                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
+                            </g>
+                            <text x="655" y="325" class="text-[11px] font-semibold fill-earth-800 pointer-events-none">Kentucky Region</text>
+
+                            <!-- Southwest (Carob) -->
+                            <g class="map-pin" data-id="southwest" transform="translate(300, 370)">
+                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
+                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
+                            </g>
+                            <text x="240" y="390" class="text-[11px] font-semibold fill-earth-800 pointer-events-none">Southwest US</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Provenance Detail Card Right -->
+                <div class="lg:col-span-4">
+                    <div id="provenance-card" class="bg-white rounded-3xl p-6 sm:p-8 border border-cream-200 shadow-sm transition-all">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-olive-50 text-olive-800 text-xs font-bold uppercase tracking-wider mb-4">
+                            <span id="prov-tag">Company HQ</span>
+                        </div>
+                        <h3 id="prov-title" class="font-serif text-2xl font-bold text-earth-900">
+                            Wyoming Operations
+                        </h3>
+                        <p id="prov-desc" class="text-earth-800/80 text-sm mt-3 leading-relaxed">
+                            Estaco is proud to be registered and operated out of Wyoming. From here, we oversee our batch fulfillment, direct-to-team logistics, and strict quality controls.
+                        </p>
+                        
+                        <div class="mt-6 pt-6 border-t border-cream-200/80 space-y-3">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-earth-800/60 font-medium">Ingredients Sourced:</span>
+                                <span id="prov-ingredients" class="font-bold text-olive-800">Operational Hub</span>
+                            </div>
+                            <div class="flex justify-between text-xs">
+                                <span class="text-earth-800/60 font-medium">Standards:</span>
+                                <span id="prov-standards" class="font-bold text-earth-900">100% US Business Entity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULA & INGREDIENT MATRIX -->
+    <section id="formula" class="py-20 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-olive-700">No Additives • Zero Compromise</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-normal text-earth-900 mt-2">
+                    7 Uncompromised Pure Ingredients
+                </h2>
+                <p class="text-earth-800/80 mt-3 text-base">
+                    Every ingredient serves a clean functional purpose for performance, satiety, and healthy digestion.
+                </p>
+            </div>
+
+            <!-- Grid of 7 Ingredients -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- 1. Oats -->
+                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">01</div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900">US Organic Rolled Oats</h3>
+                    <p class="text-xs text-olive-700 font-semibold mt-1">Upper Midwest Millers</p>
+                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
+                        Complex, slow-digesting carbs providing steady, long-lasting energy without glucose spikes.
+                    </p>
+                </div>
+
+                <!-- 2. Golden Flaxseeds -->
+                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">02</div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900">Cold-Milled Golden Flax</h3>
+                    <p class="text-xs text-olive-700 font-semibold mt-1">Montana Agriculture</p>
+                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
+                        Packed with anti-inflammatory Plant Omega-3s (ALA) and fiber to create a smooth, thick porridge texture.
+                    </p>
+                </div>
+
+                <!-- 3. Sunflower Seeds -->
+                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">03</div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900">Sunflower Seed Kernels</h3>
+                    <p class="text-xs text-olive-700 font-semibold mt-1">North Dakota Farms</p>
+                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
+                        Clean crunch loaded with Vitamin E for muscle cell recovery and bioavailable magnesium.
+                    </p>
+                </div>
+
+                <!-- 4. Chia Seeds -->
+                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">04</div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900">US Organic Chia Seeds</h3>
+                    <p class="text-xs text-olive-700 font-semibold mt-1">Kentucky/Tennessee</p>
+                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
+                        Hydrophilic seeds that absorb milk overnight, binding the mix while delivering dense soluble fiber.
+                    </p>
+                </div>
+
+                <!-- 5. Sun-Dried Raisins -->
+                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">05</div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900">California Raisins</h3>
+                    <p class="text-xs text-olive-700 font-semibold mt-1">Fresno Central Valley</p>
+                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
+                        Unsulfured, naturally sun-dried sweetness providing quick glycogen replenishment post-workout.
+                    </p>
+                </div>
+
+                <!-- 6. Diced Prunes -->
+                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">06</div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900">Diced Unsweetened Prunes</h3>
+                    <p class="text-xs text-olive-700 font-semibold mt-1">California Orchards</p>
+                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
+                        Pure fruit packed with potassium and sorbitol for gut health, bone density, and rich caramel flavor.
+                    </p>
+                </div>
+
+                <!-- 7. Pure Carob Powder -->
+                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 stroke-amber-700 lg:col-span-2 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">07</div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900">Organic Carob Powder</h3>
+                    <p class="text-xs text-olive-700 font-semibold mt-1">Southwest Processors</p>
+                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
+                        Naturally sweet, caffeine-free cocoa alternative that gives the oats a subtle rich flavor without added refined sugars or stimulants.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Zero Junk Callout -->
+            <div class="mt-12 p-8 bg-olive-800 text-cream-50 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h3 class="font-serif text-2xl font-bold">What We Explicitly Leave Out:</h3>
+                    <p class="text-cream-200 text-sm mt-1">No refined sugars, no seed oils (canola/sunflower oil sprays), no preservatives, no nuts, and no artificial flavorings.</p>
+                </div>
+                <div class="px-6 py-3 rounded-full bg-cream-50 text-olive-900 font-bold text-xs uppercase tracking-wider whitespace-nowrap">
+                    100% Clean Label
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CO-FOUNDERS STORY SECTION -->
+    <section id="founders" class="py-20 bg-cream-100 border-y border-cream-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-olive-700">Built on Science & World-Class Experience</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-normal text-earth-900 mt-2">
+                    Meet the Co-Founders
+                </h2>
+                <p class="text-earth-800/80 mt-3 text-base">
+                    Estaco was born at the intersection of quantitative efficiency and athletic discipline.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <!-- Founder 1: Theo Bertrand -->
+                <div class="bg-white rounded-3xl p-8 border border-cream-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="inline-block px-3 py-1 rounded-full bg-olive-50 text-olive-800 text-xs font-bold uppercase tracking-wider mb-4">
+                            Operations & Unit Economics
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-earth-900">Theo Bertrand</h3>
+                        <p class="text-xs font-semibold text-earth-800/60 mt-1">Ex-Quantitative Risk & Trading Specialist</p>
+                        
+                        <p class="text-earth-800/80 text-sm mt-4 leading-relaxed">
+                            "As a former quant trader, I look at food through the lens of pure efficiency: cost per gram of clean nutrients. I designed our supply chain to eliminate retail markups, middleman fees, and cheap fillers so student-athletes get maximum caloric density under $10/kg."
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-cream-100 text-xs font-semibold text-olive-700">
+                        Focus: Unit Economics & Supply Chain Purity
+                    </div>
+                </div>
+
+                <!-- Founder 2: Laurent Sistach -->
+                <div class="bg-white rounded-3xl p-8 border border-cream-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="inline-block px-3 py-1 rounded-full bg-olive-50 text-olive-800 text-xs font-bold uppercase tracking-wider mb-4">
+                            Athletic Performance & Nutrition
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-earth-900">Laurent Sistach</h3>
+                        <p class="text-xs font-semibold text-earth-800/60 mt-1">Ex-Olympian & World Champion Skier</p>
+                        
+                        <p class="text-earth-800/80 text-sm mt-4 leading-relaxed">
+                            "Having competed at the highest world-class level in alpine skiing, I know that consistent daily energy comes from real, whole foods—not sugary energy drinks or heavily processed protein powders. Estaco is the exact daily fuel I wish I had during my training years."
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-cream-100 text-xs font-semibold text-olive-700">
+                        Focus: Athlete Energy & Whole-Food Nutrition
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM DROP MODEL (HOW IT WORKS) -->
+    <section id="model" class="py-20 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-olive-700">Direct-to-Team Logistics</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-normal text-earth-900 mt-2">
+                    How the "Team Drop" Model Works
+                </h2>
+                <p class="text-earth-800/80 mt-3 text-base">
+                    We don't pay traditional grocery store fees or expensive individual shipping. Instead, we drop pre-orders in bulk direct to local teams.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Step 1 -->
+                <div class="bg-white rounded-3xl p-8 border border-cream-200 relative">
+                    <span class="text-5xl font-serif font-bold text-olive-100 absolute top-6 right-6">01</span>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-2">Join Your Team Pre-Order</h3>
+                    <p class="text-earth-800/70 text-sm leading-relaxed">
+                        Athletes, parents, and coaches sign up under their local school or team group. Anyone can order individual bags attached to their team batch.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white rounded-3xl p-8 border border-cream-200 relative">
+                    <span class="text-5xl font-serif font-bold text-olive-100 absolute top-6 right-6">02</span>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-2">Quarterly Batch Production</h3>
+                    <p class="text-earth-800/70 text-sm leading-relaxed">
+                        We sync production every 3 months. By manufacturing in synced batches, we keep ingredient costs ultra-low and guarantee fresh farm inputs.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white rounded-3xl p-8 border border-cream-200 relative">
+                    <span class="text-5xl font-serif font-bold text-olive-100 absolute top-6 right-6">03</span>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-2">Bulk Delivery to Team Lead</h3>
+                    <p class="text-earth-800/70 text-sm leading-relaxed">
+                        A single consolidated shipment arrives at your designated Team Captain or Booster Lead, unlocking an incredible <strong class="text-earth-900">$9.99 / 1kg bag</strong> price point.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER PRE-SALE SIGNUP -->
+    <footer class="bg-earth-900 text-cream-50 py-16 border-t border-earth-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-olive-700 flex items-center justify-center text-cream-50 font-serif font-bold text-lg">
+                            E
+                        </div>
+                        <span class="font-serif text-2xl font-bold tracking-tight">Estaco</span>
+                    </div>
+                    <p class="text-cream-200/80 text-sm max-w-md">
+                        Clean, 100% US-Grown Organic Overnight Oats for high school & university athletes. Wyoming Registered Entity.
+                    </p>
+                    <p class="text-xs text-cream-300/50 pt-2">
+                        © <script>document.write(new Date().getFullYear())</script> Estaco LLC. All rights reserved. Nut-Free & Organic Agriculture.
+                    </p>
+                </div>
+
+                <!-- Footer Form -->
+                <div class="lg:col-span-6">
+                    <div class="bg-earth-800/60 p-6 rounded-3xl border border-earth-800">
+                        <h4 class="font-serif text-xl font-bold mb-2">Be First in Line for the Next Team Drop</h4>
+                        <p class="text-xs text-cream-200/70 mb-4">Enter your email to receive pre-sale notification links when batch ordering opens.</p>
+                        
+                        <form id="footer-presale-form" class="space-y-3">
+                            <div class="flex flex-col sm:flex-row gap-2">
+                                <input 
+                                    type="email" 
+                                    required 
+                                    placeholder="Enter your email address..." 
+                                    class="flex-1 px-4 py-3 rounded-xl border border-earth-700 bg-earth-900 text-cream-50 focus:outline-none focus:ring-2 focus:ring-olive-600 text-sm"
+                                >
+                                <button 
+                                    type="submit" 
+                                    class="px-6 py-3 rounded-xl bg-olive-700 hover:bg-olive-600 text-cream-50 font-semibold text-sm transition-all"
+                                >
+                                    Subscribe
+                                </button>
+                            </div>
+                        </form>
+                        <div id="footer-success-msg" class="hidden mt-3 p-3 rounded-xl bg-olive-900/80 border border-olive-700 text-cream-100 text-xs">
+                            ✓ Email registered! We'll reach out with your team drop link.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT LOGIC -->
+    <script>
+        // Provenance Data Matrix
+        const provenanceData = {
+            wyoming: {
+                tag: "Company HQ",
+                title: "Wyoming Headquarters",
+                desc: "Estaco is proudly registered and managed in Wyoming. We handle our direct-to-team logistics, batch scheduling, and administrative operations here.",
+                ingredients: "Operational & Logistics Hub",
+                standards: "100% US Registered Business"
+            },
+            california: {
+                tag: "Fruit Orchards",
+                title: "California Central Valley",
+                desc: "Our unsulfured sun-dried raisins and unsweetened diced prunes are grown in California's nutrient-dense Central Valley soil.",
+                ingredients: "California Raisins & Diced Prunes",
+                standards: "Zero Added Sugars or Oils"
+            },
+            midwest: {
+                tag: "Grain & Seed Mills",
+                title: "Upper Midwest Plains",
+                desc: "North Dakota and Minnesota farmers produce our clean organic rolled oats and raw, crunch-filled sunflower seed kernels.",
+                ingredients: "Rolled Oats & Sunflower Kernels",
+                standards: "100% Certified US Organic"
+            },
+            montana: {
+                tag: "Golden Flax Fields",
+                title: "Montana Agriculture",
+                desc: "Rich Northern Plains soil provides our cold-milled golden flaxseed meal, supplying vital plant-based Omega-3s.",
+                ingredients: "Cold-Milled Golden Flax",
+                standards: "Non-GMO & Cold-Milled"
+            },
+            kentucky: {
+                tag: "Chia Cultivation",
+                title: "Kentucky / Tennessee Region",
+                desc: "Domestic organic chia seed growers provide our clean hydrophilic seed base that thickens our oats overnight.",
+                ingredients: "USA Organic Chia Seeds",
+                standards: "Clean Whole-Seed Standard"
+            },
+            southwest: {
+                tag: "Natural Flavor",
+                title: "Southwest US Processors",
+                desc: "Pure, caffeine-free organic carob powder is sourced from domestic processors to provide rich cocoa flavor naturally.",
+                ingredients: "Organic Carob Powder",
+                standards: "Pure Allergen-Free Powder"
+            }
+        };
+
+        // DOM Elements
+        const pins = document.querySelectorAll('.map-pin');
+        const cardTag = document.getElementById('prov-tag');
+        const cardTitle = document.getElementById('prov-title');
+        const cardDesc = document.getElementById('prov-desc');
+        const cardIng = document.getElementById('prov-ingredients');
+        const cardStd = document.getElementById('prov-standards');
+
+        // Pin Hover/Click Handler
+        pins.forEach(pin => {
+            const updatePin = () => {
+                const id = pin.getAttribute('data-id');
+                const data = provenanceData[id];
+                
+                if (data) {
+                    pins.forEach(p => p.classList.remove('active'));
+                    pin.classList.add('active');
+
+                    cardTag.innerText = data.tag;
+                    cardTitle.innerText = data.title;
+                    cardDesc.innerText = data.desc;
+                    cardIng.innerText = data.ingredients;
+                    cardStd.innerText = data.standards;
+                }
+            };
+
+            pin.addEventListener('mouseenter', updatePin);
+            pin.addEventListener('click', updatePin);
+        });
+
+        // Form Handling Logic (Client-Side Simulation)
+        const setupForm = (formId, msgId) => {
+            const form = document.getElementById(formId);
+            const msg = document.getElementById(msgId);
+            
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    form.classList.add('hidden');
+                    msg.classList.remove('hidden');
+                });
+            }
+        };
+
+        setupForm('hero-presale-form', 'hero-success-msg');
+        setupForm('footer-presale-form', 'footer-success-msg');
+    </script>
+</body>
+</html>
