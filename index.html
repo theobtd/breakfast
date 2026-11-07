@@ -97,9 +97,9 @@
 
             <!-- Nav Links -->
             <div class="hidden md:flex items-center gap-8 font-medium text-sm text-earth-800/80">
-                <a href="#formula" class="hover:text-olive-700 transition-colors">Our Formula</a>
-                <a href="#provenance" class="hover:text-olive-700 transition-colors">US Provenance Map</a>
+                <a href="#provenance" class="hover:text-olive-700 transition-colors">Ingredients & Map</a>
                 <a href="#economics" class="hover:text-olive-700 transition-colors">Fair Pricing</a>
+                <a href="#nutrition" class="hover:text-olive-700 transition-colors">Nutrition</a>
                 <a href="#founders" class="hover:text-olive-700 transition-colors">Co-Founders</a>
                 <a href="#model" class="hover:text-olive-700 transition-colors">Team Drop Model</a>
             </div>
@@ -110,8 +110,6 @@
                     Join Launch Pre-Sale
                 </a>
             </div>
-
-            <a href="#nutrition" class="hover:text-olive-700 transition-colors">Nutrition</a>
         </div>
     </nav>
 
@@ -215,16 +213,16 @@
         </div>
     </section>
 
-    <!-- PROVENANCE MAP SECTION -->
+    <!-- COMBINED PROVENANCE MAP & INGREDIENT MATRIX SECTION -->
     <section id="provenance" class="py-20 bg-cream-100 border-b border-cream-200/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-xs font-bold uppercase tracking-widest text-olive-700">Radical Sourcing Transparency</span>
                 <h2 class="font-serif text-3xl sm:text-4xl font-normal text-earth-900 mt-2">
-                    Every ingredient grown on American soil.
+                    7 Ingredients. 100% US Agricultural Soil.
                 </h2>
                 <p class="text-earth-800/80 mt-3 text-base">
-                    We bypass global supply chains to partner directly with domestic farmers. Select any dot on the map to explore the origin of your food.
+                    Every ingredient in our bag is grown domestically with zero added sugar, zero seed oils, and zero preservatives. Select any pin on the map to explore its origin and nutritional purpose.
                 </p>
             </div>
 
@@ -234,129 +232,56 @@
                 <div class="lg:col-span-8 bg-white rounded-3xl p-6 sm:p-8 border border-cream-200 shadow-sm relative">
                     <div class="flex items-center justify-between mb-4">
                         <span class="text-xs font-semibold text-earth-800/60 uppercase tracking-wider">USA Agricultural Provenance</span>
-                        <span class="text-xs text-olive-700 font-medium">Hover/Click pins for details</span>
+                        <span class="text-xs text-olive-700 font-medium">Select any pin to view details</span>
                     </div>
 
                     <div class="relative w-full aspect-[16/10] bg-cream-50 rounded-2xl border border-cream-200 overflow-hidden flex items-center justify-center p-2">
                         <!-- Real-World D3 Vector Map Target -->
                         <svg id="us-provenance-map" viewBox="0 0 960 600" class="w-full h-full"></svg>
                     </div>
-                </div>
 
-                <!-- Provenance Detail Card Right -->
-                <div class="lg:col-span-4">
-                    <div id="provenance-card" class="bg-white rounded-3xl p-6 sm:p-8 border border-cream-200 shadow-sm transition-all">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-olive-50 text-olive-800 text-xs font-bold uppercase tracking-wider mb-4">
-                            <span id="prov-tag">Company HQ</span>
-                        </div>
-                        <h3 id="prov-title" class="font-serif text-2xl font-bold text-earth-900">
-                            Wyoming Operations
-                        </h3>
-                        <p id="prov-desc" class="text-earth-800/80 text-sm mt-3 leading-relaxed">
-                            Estaco is proud to be registered and operated out of Wyoming. From here, we oversee our batch fulfillment, direct-to-team logistics, and strict quality controls.
-                        </p>
-                        
-                        <div class="mt-6 pt-6 border-t border-cream-200/80 space-y-3">
-                            <div class="flex justify-between text-xs">
-                                <span class="text-earth-800/60 font-medium">Ingredients Sourced:</span>
-                                <span id="prov-ingredients" class="font-bold text-olive-800">Operational Hub</span>
-                            </div>
-                            <div class="flex justify-between text-xs">
-                                <span class="text-earth-800/60 font-medium">Standards:</span>
-                                <span id="prov-standards" class="font-bold text-earth-900">100% US Business Entity</span>
-                            </div>
+                    <!-- Quick-Select Ingredient Pill Selector -->
+                    <div class="mt-6 pt-4 border-t border-cream-100">
+                        <span class="block text-[11px] font-bold uppercase tracking-wider text-earth-800/60 mb-2.5">Quick Select Ingredient:</span>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                            <button onclick="triggerPin('wyoming')" class="px-3 py-1.5 rounded-lg bg-olive-100/60 hover:bg-olive-700 hover:text-cream-50 text-olive-800 transition-all">Wyoming (HQ)</button>
+                            <button onclick="triggerPin('oats')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">01. Rolled Oats</button>
+                            <button onclick="triggerPin('flax')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">02. Golden Flax</button>
+                            <button onclick="triggerPin('sunflower')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">03. Sunflower Seeds</button>
+                            <button onclick="triggerPin('chia')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">04. Chia Seeds</button>
+                            <button onclick="triggerPin('raisins')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">05. California Raisins</button>
+                            <button onclick="triggerPin('prunes')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">06. Diced Prunes</button>
+                            <button onclick="triggerPin('carob')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">07. Carob Powder</button>
                         </div>
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- FORMULA & INGREDIENT MATRIX -->
-    <section id="formula" class="py-20 bg-cream-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-olive-700">No Additives • Zero Compromise</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-normal text-earth-900 mt-2">
-                    7 Uncompromised Pure Ingredients
-                </h2>
-                <p class="text-earth-800/80 mt-3 text-base">
-                    Every ingredient serves a clean functional purpose for performance, satiety, and healthy digestion.
-                </p>
-            </div>
-
-            <!-- Grid of 7 Ingredients -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <!-- 1. Oats -->
-                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">01</div>
-                    <h3 class="font-serif text-xl font-bold text-earth-900">US Organic Rolled Oats</h3>
-                    <p class="text-xs text-olive-700 font-semibold mt-1">Upper Midwest Millers</p>
-                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
-                        Complex, slow-digesting carbs providing steady, long-lasting energy without glucose spikes.
-                    </p>
-                </div>
-
-                <!-- 2. Golden Flaxseeds -->
-                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">02</div>
-                    <h3 class="font-serif text-xl font-bold text-earth-900">Cold-Milled Golden Flax</h3>
-                    <p class="text-xs text-olive-700 font-semibold mt-1">Montana Agriculture</p>
-                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
-                        Packed with anti-inflammatory Plant Omega-3s (ALA) and fiber to create a smooth, thick porridge texture.
-                    </p>
-                </div>
-
-                <!-- 3. Sunflower Seeds -->
-                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">03</div>
-                    <h3 class="font-serif text-xl font-bold text-earth-900">Sunflower Seed Kernels</h3>
-                    <p class="text-xs text-olive-700 font-semibold mt-1">North Dakota Farms</p>
-                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
-                        Clean crunch loaded with Vitamin E for muscle cell recovery and bioavailable magnesium.
-                    </p>
-                </div>
-
-                <!-- 4. Chia Seeds -->
-                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">04</div>
-                    <h3 class="font-serif text-xl font-bold text-earth-900">US Organic Chia Seeds</h3>
-                    <p class="text-xs text-olive-700 font-semibold mt-1">Kentucky/Tennessee</p>
-                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
-                        Hydrophilic seeds that absorb milk overnight, binding the mix while delivering dense soluble fiber.
-                    </p>
-                </div>
-
-                <!-- 5. Sun-Dried Raisins -->
-                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">05</div>
-                    <h3 class="font-serif text-xl font-bold text-earth-900">California Raisins</h3>
-                    <p class="text-xs text-olive-700 font-semibold mt-1">Fresno Central Valley</p>
-                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
-                        Unsulfured, naturally sun-dried sweetness providing quick glycogen replenishment post-workout.
-                    </p>
-                </div>
-
-                <!-- 6. Diced Prunes -->
-                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">06</div>
-                    <h3 class="font-serif text-xl font-bold text-earth-900">Diced Unsweetened Prunes</h3>
-                    <p class="text-xs text-olive-700 font-semibold mt-1">California Orchards</p>
-                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
-                        Pure fruit packed with potassium and sorbitol for gut health, bone density, and rich caramel flavor.
-                    </p>
-                </div>
-
-                <!-- 7. Pure Carob Powder -->
-                <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-sm hover:border-olive-600/40 stroke-amber-700 lg:col-span-2 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-olive-50 flex items-center justify-center text-olive-800 font-bold mb-4">07</div>
-                    <h3 class="font-serif text-xl font-bold text-earth-900">Organic Carob Powder</h3>
-                    <p class="text-xs text-olive-700 font-semibold mt-1">Southwest Processors</p>
-                    <p class="text-xs text-earth-800/70 mt-3 leading-relaxed">
-                        Naturally sweet, caffeine-free cocoa alternative that gives the oats a subtle rich flavor without added refined sugars or stimulants.
-                    </p>
+                <!-- Provenance & Ingredient Detail Card Right -->
+                <div class="lg:col-span-4">
+                    <div id="provenance-card" class="bg-white rounded-3xl p-6 sm:p-8 border border-cream-200 shadow-sm transition-all min-h-[460px] flex flex-col justify-between">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-olive-50 text-olive-800 text-xs font-bold uppercase tracking-wider mb-4">
+                                <span id="prov-tag">Company HQ</span>
+                            </div>
+                            <h3 id="prov-title" class="font-serif text-2xl font-bold text-earth-900">
+                                Wyoming Operations
+                            </h3>
+                            <p id="prov-desc" class="text-earth-800/80 text-sm mt-3 leading-relaxed">
+                                Estaco is proud to be registered and operated out of Wyoming. From here, we oversee our batch fulfillment, direct-to-team logistics, and strict quality controls.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-cream-200/80 space-y-3">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-earth-800/60 font-medium">Sourcing Origin:</span>
+                                <span id="prov-ingredients" class="font-bold text-olive-800">Operational Hub</span>
+                            </div>
+                            <div class="flex justify-between text-xs">
+                                <span class="text-earth-800/60 font-medium">Quality Standard:</span>
+                                <span id="prov-standards" class="font-bold text-earth-900">100% US Business Entity</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -374,8 +299,8 @@
         </div>
     </section>
 
-    <!-- NEW: FAIR PRICING & COST OF LIVING REALITY SECTION -->
-    <section id="economics" class="py-20 bg-cream-100 border-t border-cream-200/60">
+    <!-- FAIR PRICING & COST OF LIVING REALITY SECTION -->
+    <section id="economics" class="py-20 bg-cream-50 border-t border-cream-200/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
@@ -718,81 +643,101 @@
 
     <!-- INTERACTIVE SCRIPT LOGIC -->
     <script>
-        // Provenance Data Matrix with Geographic Coordinates [longitude, latitude]
+        // Full Provenance & Ingredient Matrix with Individual Map Coordinates
         const provenanceData = {
             wyoming: {
                 coords: [-107.29, 43.07],
                 label: "Wyoming (HQ)",
                 tag: "Company HQ",
                 title: "Wyoming Headquarters",
-                desc: "Estaco is proudly registered and operated in Wyoming. From here, we handle our batch fulfillment, direct-to-team logistics, and quality controls.",
+                desc: "Estaco is proudly registered and operated out of Wyoming. From here, we handle our batch fulfillment, direct-to-team logistics, quality testing, and administrative operations.",
                 ingredients: "Operational & Logistics Hub",
-                standards: "100% US Registered Business"
+                standards: "100% US Business Entity"
             },
-            california: {
-                coords: [-119.41, 36.77],
-                label: "California",
-                tag: "Fruit Orchards",
-                title: "California Central Valley",
-                desc: "Our unsulfured sun-dried raisins and unsweetened diced prunes are grown in California's nutrient-dense Central Valley soil.",
-                ingredients: "Sun-Dried Raisins & Diced Prunes",
-                standards: "Zero Added Sugars or Oils"
-            },
-            midwest: {
-                coords: [-99.90, 47.53],
-                label: "Upper Midwest",
-                tag: "Grain & Seed Mills",
-                title: "Upper Midwest Plains",
-                desc: "North Dakota and Minnesota farmers produce our clean organic rolled oats and raw, crunch-filled sunflower seed kernels.",
-                ingredients: "Rolled Oats & Sunflower Kernels",
+            oats: {
+                coords: [-100.4, 47.4],
+                label: "North Dakota",
+                tag: "Ingredient 01 • Complex Carbs",
+                title: "US Organic Rolled Oats",
+                desc: "Sourced from North Dakota millers. These heavy rolled oats deliver clean, complex, slow-digesting carbohydrates that provide steady, sustained physical energy without blood sugar spikes.",
+                ingredients: "Upper Midwest Grain Farms",
                 standards: "100% Certified US Organic"
             },
-            montana: {
-                coords: [-110.36, 46.87],
+            flax: {
+                coords: [-109.5, 47.0],
                 label: "Montana",
-                tag: "Golden Flax Fields",
-                title: "Montana Agriculture",
-                desc: "Rich Northern Plains soil provides our cold-milled golden flaxseed meal, supplying vital plant-based Omega-3s.",
-                ingredients: "Cold-Milled Golden Flax",
-                standards: "Non-GMO & Cold-Milled"
+                tag: "Ingredient 02 • Plant Omega-3s",
+                title: "Cold-Milled Golden Flaxseed",
+                desc: "Sourced from Montana's high plains. Cold-milled to preserve essential Alpha-Linolenic Acid (ALA Omega-3s). Soluble fibers create a rich, creamy porridge texture when soaked overnight.",
+                ingredients: "Montana Agricultural Fields",
+                standards: "Cold-Milled & Non-GMO"
             },
-            kentucky: {
+            sunflower: {
+                coords: [-100.2, 44.4],
+                label: "South Dakota",
+                tag: "Ingredient 03 • Crunch & Recover",
+                title: "Sunflower Seed Kernels",
+                desc: "Raw, unsalted kernels grown in South Dakota. They provide a firm structural crunch alongside high levels of Vitamin E for muscle cell recovery and bioavailable magnesium.",
+                ingredients: "Dakota Sunflower Growers",
+                standards: "Raw, Unsalted & Allergen-Safe"
+            },
+            chia: {
                 coords: [-84.87, 37.83],
                 label: "Kentucky Region",
-                tag: "Chia Cultivation",
-                title: "Kentucky / Tennessee Region",
-                desc: "Domestic organic chia seed growers provide our clean hydrophilic seed base that thickens our oats overnight.",
-                ingredients: "USA Organic Chia Seeds",
-                standards: "Clean Whole-Seed Standard"
+                tag: "Ingredient 04 • Fiber & Hydration",
+                title: "USA Organic Chia Seeds",
+                desc: "Hydrophilic seeds grown by domestic farmers in the Kentucky/Tennessee region. They swell in liquid overnight, binding the oat matrix together while delivering dense soluble fiber.",
+                ingredients: "Kentucky/Tennessee Regional Farms",
+                standards: "Whole-Seed Pure Standard"
             },
-            southwest: {
+            raisins: {
+                coords: [-119.7, 36.7],
+                label: "Fresno, CA",
+                tag: "Ingredient 05 • Natural Glycogen",
+                title: "California Sun-Dried Raisins",
+                desc: "Naturally sun-dried in California's Fresno Valley. Unsulfured and unsweetened, they provide clean, fast-acting natural fruit sugars for post-workout glycogen replenishment.",
+                ingredients: "Fresno Central Valley Orchards",
+                standards: "Unsulfured & Unsweetened"
+            },
+            prunes: {
+                coords: [-120.5, 35.8],
+                label: "Central Coast, CA",
+                tag: "Ingredient 06 • Bone & Gut Health",
+                title: "Diced Unsweetened Prunes",
+                desc: "Pure California prunes, diced and lightly dusted with oat flour. Packed with potassium, sorbitol, and boron to support gut health, joint recovery, and bone density.",
+                ingredients: "California Central Coast Orchards",
+                standards: "Zero Added Sugar or Oils"
+            },
+            carob: {
                 coords: [-111.65, 34.04],
                 label: "Southwest US",
-                tag: "Natural Flavor",
-                title: "Southwest US Processors",
-                desc: "Pure, caffeine-free organic carob powder is sourced from domestic processors to provide rich cocoa flavor naturally.",
-                ingredients: "Organic Carob Powder",
-                standards: "Pure Allergen-Free Powder"
+                tag: "Ingredient 07 • Pure Flavor",
+                title: "Organic Carob Powder",
+                desc: "Pure, caffeine-free roasted carob powder from Southwest processors. It infuses the oats with a rich, natural cocoa-like depth without adding refined sugars or artificial stimulants.",
+                ingredients: "Southwest Domestic Processors",
+                standards: "Pure, Caffeine-Free & Nut-Free"
             }
         };
-    
+
+        let mapPinsMap = {};
+
         // Render D3 Vector Map
         async function initUSMap() {
             const svg = d3.select("#us-provenance-map");
             const width = 960;
             const height = 600;
-    
+
             // Standard Albers USA Projection
             const projection = d3.geoAlbersUsa()
                 .scale(1200)
                 .translate([width / 2, height / 2]);
-    
+
             const path = d3.geoPath().projection(projection);
-    
+
             // Fetch TopoJSON US Atlas Data
             const us = await d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json");
             const states = topojson.feature(us, us.objects.states);
-    
+
             // Draw State Boundaries
             svg.append("g")
                 .selectAll("path")
@@ -803,42 +748,49 @@
                 .attr("fill", "#EFE8DA")
                 .attr("stroke", "#E3D7C1")
                 .attr("stroke-width", 1.2);
-    
+
             // Map Pins Group
             const pinsGroup = svg.append("g").attr("class", "pins-layer");
-    
+
             // DOM Elements for Detail Card Update
             const cardTag = document.getElementById('prov-tag');
             const cardTitle = document.getElementById('prov-title');
             const cardDesc = document.getElementById('prov-desc');
             const cardIng = document.getElementById('prov-ingredients');
             const cardStd = document.getElementById('prov-standards');
-    
-            const updateCard = (data, targetPin) => {
+
+            window.updateCard = (key) => {
+                const data = provenanceData[key];
+                if (!data) return;
+
                 d3.selectAll('.map-pin').classed('active', false);
-                d3.select(targetPin).classed('active', true);
-    
+                if (mapPinsMap[key]) {
+                    d3.select(mapPinsMap[key]).classed('active', true);
+                }
+
                 cardTag.innerText = data.tag;
                 cardTitle.innerText = data.title;
                 cardDesc.innerText = data.desc;
                 cardIng.innerText = data.ingredients;
                 cardStd.innerText = data.standards;
             };
-    
+
             // Render Pins dynamically from coordinates
             Object.keys(provenanceData).forEach(key => {
                 const data = provenanceData[key];
                 const point = projection(data.coords);
-    
-                if (!point) return; // Skip if projection fails
-    
+
+                if (!point) return;
+
                 const pinG = pinsGroup.append("g")
                     .attr("class", `map-pin ${key === 'wyoming' ? 'active' : ''}`)
                     .attr("transform", `translate(${point[0]}, ${point[1]})`)
                     .style("cursor", "pointer")
-                    .on("mouseenter", function() { updateCard(data, this); })
-                    .on("click", function() { updateCard(data, this); });
-    
+                    .on("mouseenter", function() { window.updateCard(key); })
+                    .on("click", function() { window.updateCard(key); });
+
+                mapPinsMap[key] = pinG.node();
+
                 // Pulsing Ring for Active State
                 pinG.append("circle")
                     .attr("class", "outer-ring")
@@ -846,18 +798,18 @@
                     .attr("fill", "none")
                     .attr("stroke", "#4A5D3E")
                     .attr("opacity", 0.8);
-    
+
                 // Core Pin Circle
                 pinG.append("circle")
                     .attr("cx", 0).attr("cy", 0).attr("r", key === 'wyoming' ? 8 : 6)
                     .attr("fill", key === 'wyoming' ? "#3B4A2D" : "#4A5D3E");
-    
+
                 if (key === 'wyoming') {
                     pinG.append("circle")
                         .attr("cx", 0).attr("cy", 0).attr("r", 3)
                         .attr("fill", "#FDFBF7");
                 }
-    
+
                 // Pin Label
                 pinG.append("text")
                     .attr("x", 12)
@@ -869,7 +821,29 @@
                     .text(data.label);
             });
         }
-    
+
+        // Helper function for quick pill selector buttons
+        window.triggerPin = (key) => {
+            window.updateCard(key);
+        };
+
+        // Form Handling Logic (Client-Side Simulation)
+        const setupForm = (formId, msgId) => {
+            const form = document.getElementById(formId);
+            const msg = document.getElementById(msgId);
+            
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    form.classList.add('hidden');
+                    msg.classList.remove('hidden');
+                });
+            }
+        };
+
+        setupForm('hero-presale-form', 'hero-success-msg');
+        setupForm('footer-presale-form', 'footer-success-msg');
+
         initUSMap();
     </script>
 </body>
