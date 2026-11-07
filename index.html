@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estaco | 100% US-Grown Organic Overnight Oats</title>
+    <!-- D3 & TopoJSON for Accurate US Vector Map -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -231,58 +234,9 @@
                         <span class="text-xs text-olive-700 font-medium">Hover/Click pins for details</span>
                     </div>
 
-                    <!-- Simplified Interactive USA Map Graphic -->
                     <div class="relative w-full aspect-[16/10] bg-cream-50 rounded-2xl border border-cream-200 overflow-hidden flex items-center justify-center p-2">
-                        <svg viewBox="0 0 960 600" class="w-full h-full text-cream-300 fill-current">
-                            <!-- Stylized USA Base Path -->
-                            <path d="M 150 150 L 220 130 L 320 140 L 400 110 L 500 130 L 600 110 L 700 140 L 820 150 L 890 190 L 850 250 L 880 320 L 820 400 L 780 480 L 700 470 L 620 450 L 520 490 L 450 490 L 380 430 L 300 450 L 220 400 L 140 380 L 100 280 L 120 200 Z" class="fill-cream-200/70 stroke-cream-300" stroke-width="2"/>
-                            <!-- State Lines Decorative Grid (Subtle) -->
-                            <path d="M 220 130 L 220 400 M 320 140 L 320 450 M 450 120 L 450 490 M 600 110 L 600 450 M 700 140 L 700 470 M 150 250 L 850 250 M 140 350 L 850 350" stroke="#E3D7C1" stroke-width="1" stroke-dasharray="4,4" fill="none" opacity="0.6"/>
-
-                            <!-- PINS GROUP -->
-                            <!-- Wyoming HQ -->
-                            <g class="map-pin active" data-id="wyoming" transform="translate(340, 260)">
-                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
-                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
-                                <circle cx="0" cy="0" r="3" fill="#FDFBF7"/>
-                            </g>
-                            <text x="350" y="255" class="text-[11px] font-bold fill-earth-900 pointer-events-none">Wyoming (HQ)</text>
-
-                            <!-- California (Raisins & Prunes) -->
-                            <g class="map-pin" data-id="california" transform="translate(170, 310)">
-                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
-                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
-                            </g>
-                            <text x="110" y="330" class="text-[11px] font-semibold fill-earth-800 pointer-events-none">California</text>
-
-                            <!-- Upper Midwest (North Dakota/Minnesota - Oats & Sunflowers) -->
-                            <g class="map-pin" data-id="midwest" transform="translate(480, 180)">
-                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
-                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
-                            </g>
-                            <text x="495" y="175" class="text-[11px] font-semibold fill-earth-800 pointer-events-none">Upper Midwest</text>
-
-                            <!-- Northern Plains (Montana - Golden Flax) -->
-                            <g class="map-pin" data-id="montana" transform="translate(320, 170)">
-                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
-                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
-                            </g>
-                            <text x="260" y="165" class="text-[11px] font-semibold fill-earth-800 pointer-events-none">Montana</text>
-
-                            <!-- Kentucky/Tennessee (Chia) -->
-                            <g class="map-pin" data-id="kentucky" transform="translate(640, 310)">
-                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
-                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
-                            </g>
-                            <text x="655" y="325" class="text-[11px] font-semibold fill-earth-800 pointer-events-none">Kentucky Region</text>
-
-                            <!-- Southwest (Carob) -->
-                            <g class="map-pin" data-id="southwest" transform="translate(300, 370)">
-                                <circle class="outer-ring" cx="0" cy="0" r="10" fill="none" stroke="#4A5D3E" opacity="0.8"/>
-                                <circle cx="0" cy="0" r="7" fill="#4A5D3E"/>
-                            </g>
-                            <text x="240" y="390" class="text-[11px] font-semibold fill-earth-800 pointer-events-none">Southwest US</text>
-                        </svg>
+                        <!-- Real-World D3 Vector Map Target -->
+                        <svg id="us-provenance-map" viewBox="0 0 960 600" class="w-full h-full"></svg>
                     </div>
                 </div>
 
@@ -572,23 +526,29 @@
 
     <!-- INTERACTIVE SCRIPT LOGIC -->
     <script>
-        // Provenance Data Matrix
+        // Provenance Data Matrix with Geographic Coordinates [longitude, latitude]
         const provenanceData = {
             wyoming: {
+                coords: [-107.29, 43.07],
+                label: "Wyoming (HQ)",
                 tag: "Company HQ",
                 title: "Wyoming Headquarters",
-                desc: "Estaco is proudly registered and managed in Wyoming. We handle our direct-to-team logistics, batch scheduling, and administrative operations here.",
+                desc: "Estaco is proudly registered and operated in Wyoming. From here, we handle our batch fulfillment, direct-to-team logistics, and quality controls.",
                 ingredients: "Operational & Logistics Hub",
                 standards: "100% US Registered Business"
             },
             california: {
+                coords: [-119.41, 36.77],
+                label: "California",
                 tag: "Fruit Orchards",
                 title: "California Central Valley",
                 desc: "Our unsulfured sun-dried raisins and unsweetened diced prunes are grown in California's nutrient-dense Central Valley soil.",
-                ingredients: "California Raisins & Diced Prunes",
+                ingredients: "Sun-Dried Raisins & Diced Prunes",
                 standards: "Zero Added Sugars or Oils"
             },
             midwest: {
+                coords: [-99.90, 47.53],
+                label: "Upper Midwest",
                 tag: "Grain & Seed Mills",
                 title: "Upper Midwest Plains",
                 desc: "North Dakota and Minnesota farmers produce our clean organic rolled oats and raw, crunch-filled sunflower seed kernels.",
@@ -596,6 +556,8 @@
                 standards: "100% Certified US Organic"
             },
             montana: {
+                coords: [-110.36, 46.87],
+                label: "Montana",
                 tag: "Golden Flax Fields",
                 title: "Montana Agriculture",
                 desc: "Rich Northern Plains soil provides our cold-milled golden flaxseed meal, supplying vital plant-based Omega-3s.",
@@ -603,6 +565,8 @@
                 standards: "Non-GMO & Cold-Milled"
             },
             kentucky: {
+                coords: [-84.87, 37.83],
+                label: "Kentucky Region",
                 tag: "Chia Cultivation",
                 title: "Kentucky / Tennessee Region",
                 desc: "Domestic organic chia seed growers provide our clean hydrophilic seed base that thickens our oats overnight.",
@@ -610,6 +574,8 @@
                 standards: "Clean Whole-Seed Standard"
             },
             southwest: {
+                coords: [-111.65, 34.04],
+                label: "Southwest US",
                 tag: "Natural Flavor",
                 title: "Southwest US Processors",
                 desc: "Pure, caffeine-free organic carob powder is sourced from domestic processors to provide rich cocoa flavor naturally.",
@@ -617,53 +583,102 @@
                 standards: "Pure Allergen-Free Powder"
             }
         };
-
-        // DOM Elements
-        const pins = document.querySelectorAll('.map-pin');
-        const cardTag = document.getElementById('prov-tag');
-        const cardTitle = document.getElementById('prov-title');
-        const cardDesc = document.getElementById('prov-desc');
-        const cardIng = document.getElementById('prov-ingredients');
-        const cardStd = document.getElementById('prov-standards');
-
-        // Pin Hover/Click Handler
-        pins.forEach(pin => {
-            const updatePin = () => {
-                const id = pin.getAttribute('data-id');
-                const data = provenanceData[id];
-                
-                if (data) {
-                    pins.forEach(p => p.classList.remove('active'));
-                    pin.classList.add('active');
-
-                    cardTag.innerText = data.tag;
-                    cardTitle.innerText = data.title;
-                    cardDesc.innerText = data.desc;
-                    cardIng.innerText = data.ingredients;
-                    cardStd.innerText = data.standards;
-                }
+    
+        // Render D3 Vector Map
+        async function initUSMap() {
+            const svg = d3.select("#us-provenance-map");
+            const width = 960;
+            const height = 600;
+    
+            // Standard Albers USA Projection
+            const projection = d3.geoAlbersUsa()
+                .scale(1200)
+                .translate([width / 2, height / 2]);
+    
+            const path = d3.geoPath().projection(projection);
+    
+            // Fetch TopoJSON US Atlas Data
+            const us = await d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json");
+            const states = topojson.feature(us, us.objects.states);
+    
+            // Draw State Boundaries
+            svg.append("g")
+                .selectAll("path")
+                .data(states.features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .attr("fill", "#EFE8DA")
+                .attr("stroke", "#E3D7C1")
+                .attr("stroke-width", 1.2);
+    
+            // Map Pins Group
+            const pinsGroup = svg.append("g").attr("class", "pins-layer");
+    
+            // DOM Elements for Detail Card Update
+            const cardTag = document.getElementById('prov-tag');
+            const cardTitle = document.getElementById('prov-title');
+            const cardDesc = document.getElementById('prov-desc');
+            const cardIng = document.getElementById('prov-ingredients');
+            const cardStd = document.getElementById('prov-standards');
+    
+            const updateCard = (data, targetPin) => {
+                d3.selectAll('.map-pin').classed('active', false);
+                d3.select(targetPin).classed('active', true);
+    
+                cardTag.innerText = data.tag;
+                cardTitle.innerText = data.title;
+                cardDesc.innerText = data.desc;
+                cardIng.innerText = data.ingredients;
+                cardStd.innerText = data.standards;
             };
-
-            pin.addEventListener('mouseenter', updatePin);
-            pin.addEventListener('click', updatePin);
-        });
-
-        // Form Handling Logic (Client-Side Simulation)
-        const setupForm = (formId, msgId) => {
-            const form = document.getElementById(formId);
-            const msg = document.getElementById(msgId);
-            
-            if (form) {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    form.classList.add('hidden');
-                    msg.classList.remove('hidden');
-                });
-            }
-        };
-
-        setupForm('hero-presale-form', 'hero-success-msg');
-        setupForm('footer-presale-form', 'footer-success-msg');
+    
+            // Render Pins dynamically from coordinates
+            Object.keys(provenanceData).forEach(key => {
+                const data = provenanceData[key];
+                const point = projection(data.coords);
+    
+                if (!point) return; // Skip if projection fails
+    
+                const pinG = pinsGroup.append("g")
+                    .attr("class", `map-pin ${key === 'wyoming' ? 'active' : ''}`)
+                    .attr("transform", `translate(${point[0]}, ${point[1]})`)
+                    .style("cursor", "pointer")
+                    .on("mouseenter", function() { updateCard(data, this); })
+                    .on("click", function() { updateCard(data, this); });
+    
+                // Pulsing Ring for Active State
+                pinG.append("circle")
+                    .attr("class", "outer-ring")
+                    .attr("cx", 0).attr("cy", 0).attr("r", 10)
+                    .attr("fill", "none")
+                    .attr("stroke", "#4A5D3E")
+                    .attr("opacity", 0.8);
+    
+                // Core Pin Circle
+                pinG.append("circle")
+                    .attr("cx", 0).attr("cy", 0).attr("r", key === 'wyoming' ? 8 : 6)
+                    .attr("fill", key === 'wyoming' ? "#3B4A2D" : "#4A5D3E");
+    
+                if (key === 'wyoming') {
+                    pinG.append("circle")
+                        .attr("cx", 0).attr("cy", 0).attr("r", 3)
+                        .attr("fill", "#FDFBF7");
+                }
+    
+                // Pin Label
+                pinG.append("text")
+                    .attr("x", 12)
+                    .attr("y", 4)
+                    .attr("font-size", "11px")
+                    .attr("font-weight", key === 'wyoming' ? "bold" : "600")
+                    .attr("fill", "#2C2520")
+                    .style("pointer-events", "none")
+                    .text(data.label);
+            });
+        }
+    
+        initUSMap();
     </script>
 </body>
 </html>
