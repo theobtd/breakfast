@@ -56,13 +56,12 @@
             font-family: 'Fraunces', serif;
         }
         
-        /* Interactive Map Pins */
+        /* Interactive Map Pins (Anchored without shifting or scaling wrapper) */
         .map-pin {
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .map-pin:hover, .map-pin.active {
-            transform: scale(1.35);
+        .map-pin circle.outer-ring {
+            transition: all 0.3s ease;
         }
         .map-pin.active circle.outer-ring {
             stroke-width: 3;
@@ -244,14 +243,14 @@
                     <div class="mt-6 pt-4 border-t border-cream-100">
                         <span class="block text-[11px] font-bold uppercase tracking-wider text-earth-800/60 mb-2.5">Quick Select Ingredient:</span>
                         <div class="flex flex-wrap gap-2 text-xs font-semibold">
-                            <button onclick="triggerPin('wyoming')" class="px-3 py-1.5 rounded-lg bg-olive-100/60 hover:bg-olive-700 hover:text-cream-50 text-olive-800 transition-all">Wyoming (HQ)</button>
-                            <button onclick="triggerPin('oats')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">01. Rolled Oats</button>
-                            <button onclick="triggerPin('flax')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">02. Golden Flax</button>
-                            <button onclick="triggerPin('sunflower')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">03. Sunflower Seeds</button>
-                            <button onclick="triggerPin('chia')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">04. Chia Seeds</button>
-                            <button onclick="triggerPin('raisins')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">05. California Raisins</button>
-                            <button onclick="triggerPin('prunes')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">06. Diced Prunes</button>
-                            <button onclick="triggerPin('carob')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">07. Carob Powder</button>
+                            <button id="pill-wyoming" onclick="triggerPin('wyoming')" class="px-3 py-1.5 rounded-lg bg-olive-700 text-cream-50 transition-all">Wyoming (HQ)</button>
+                            <button id="pill-oats" onclick="triggerPin('oats')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">01. Rolled Oats</button>
+                            <button id="pill-flax" onclick="triggerPin('flax')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">02. Golden Flax</button>
+                            <button id="pill-sunflower" onclick="triggerPin('sunflower')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">03. Sunflower Seeds</button>
+                            <button id="pill-chia" onclick="triggerPin('chia')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">04. Chia Seeds</button>
+                            <button id="pill-raisins" onclick="triggerPin('raisins')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">05. California Raisins</button>
+                            <button id="pill-prunes" onclick="triggerPin('prunes')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">06. Diced Prunes</button>
+                            <button id="pill-carob" onclick="triggerPin('carob')" class="px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all">07. Carob Powder</button>
                         </div>
                     </div>
                 </div>
@@ -264,17 +263,17 @@
                                 <span id="prov-tag">Company HQ</span>
                             </div>
                             <h3 id="prov-title" class="font-serif text-2xl font-bold text-earth-900">
-                                Wyoming Operations
+                                Wyoming Headquarters
                             </h3>
                             <p id="prov-desc" class="text-earth-800/80 text-sm mt-3 leading-relaxed">
-                                Estaco is proud to be registered and operated out of Wyoming. From here, we oversee our batch fulfillment, direct-to-team logistics, and strict quality controls.
+                                Estaco is proudly registered and operated out of Wyoming. From here, we handle our batch fulfillment, direct-to-team logistics, quality testing, and administrative operations.
                             </p>
                         </div>
                         
                         <div class="mt-6 pt-6 border-t border-cream-200/80 space-y-3">
                             <div class="flex justify-between text-xs">
                                 <span class="text-earth-800/60 font-medium">Sourcing Origin:</span>
-                                <span id="prov-ingredients" class="font-bold text-olive-800">Operational Hub</span>
+                                <span id="prov-ingredients" class="font-bold text-olive-800">Operational & Logistics Hub</span>
                             </div>
                             <div class="flex justify-between text-xs">
                                 <span class="text-earth-800/60 font-medium">Quality Standard:</span>
@@ -652,7 +651,7 @@
                 title: "Wyoming Headquarters",
                 desc: "Estaco is proudly registered and operated out of Wyoming. From here, we handle our batch fulfillment, direct-to-team logistics, quality testing, and administrative operations.",
                 ingredients: "Operational & Logistics Hub",
-                standards: "100% US Business Entity"
+                standards: "100% US Registered Business"
             },
             oats: {
                 coords: [-100.4, 47.4],
@@ -763,11 +762,25 @@
                 const data = provenanceData[key];
                 if (!data) return;
 
+                // Update active class on map pins without shifting coordinates or translating SVG
                 d3.selectAll('.map-pin').classed('active', false);
                 if (mapPinsMap[key]) {
                     d3.select(mapPinsMap[key]).classed('active', true);
                 }
 
+                // Update pill button styling to reflect current selection
+                Object.keys(provenanceData).forEach(k => {
+                    const btn = document.getElementById(`pill-${k}`);
+                    if (btn) {
+                        if (k === key) {
+                            btn.className = "px-3 py-1.5 rounded-lg bg-olive-700 text-cream-50 transition-all font-semibold";
+                        } else {
+                            btn.className = "px-3 py-1.5 rounded-lg bg-cream-100 hover:bg-olive-700 hover:text-cream-50 text-earth-800 border border-cream-200 transition-all font-semibold";
+                        }
+                    }
+                });
+
+                // Update text content in right-hand card
                 cardTag.innerText = data.tag;
                 cardTitle.innerText = data.title;
                 cardDesc.innerText = data.desc;
@@ -786,7 +799,6 @@
                     .attr("class", `map-pin ${key === 'wyoming' ? 'active' : ''}`)
                     .attr("transform", `translate(${point[0]}, ${point[1]})`)
                     .style("cursor", "pointer")
-                    .on("mouseenter", function() { window.updateCard(key); })
                     .on("click", function() { window.updateCard(key); });
 
                 mapPinsMap[key] = pinG.node();
